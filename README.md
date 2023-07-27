@@ -5,7 +5,7 @@ text and then write it all back to the file. It expects you to pipe/pass as args
 It uses GoogleTranslate from the deep_translate library and works best via pool of rotating proxies. There's no reason
 the other deep_translate backends wouldn't work, just untested.
 
-It's been tested with Russian and Chinese source and does as good a job as one could hope. YMMV but it seems to be okay 
+It's been tested with Russian and Chinese source and does as good a job as one could hope. YMMV but it seems to be okay
 at not mangling files.
 
 It batches things up and handles Google's antics as best it can, there's a fair bit of juggling but it should go as
@@ -14,9 +14,21 @@ quickly as it can without filling the files with nonsense.
 I made it because the Chinese particularly release a lot of interesting code now, and unfortunately its just squiggles
 to me.
 
+Usage
+------
+I use like this:
+
+    find ~/ksubdomain -type f |grep -v 'git\|svg'|  python3 main.py
+
+If you want to supercharge things (have a rotating proxy handy) then use xargs but beware of unescaped file paths (I
+avoid spaces):
+
+    find ~/ksubdomain -type f |grep -v 'git\|svg'|  xargs -n 30 -P5 python3 main.py 
+
 Prerequisites
 -------------
-You need Python 3 to run this program, and the following Python packages must also be installed:
+You'll need Python 3 along with the following packages:
+
 - argparse
 - cypunct
 - charset-normalizer
@@ -24,7 +36,7 @@ You need Python 3 to run this program, and the following Python packages must al
 - thefuzz
 
 Before:
- 
+
     user@flex:~/ksubdomain$ go run cmd/ksubdomain/*.go e
     NAME:
        cmd enum - 枚举域名
@@ -51,8 +63,6 @@ Before:
        --level value, -l value         枚举几级域名，默认为2，二级域名 (default: 2)
        --level-dict value, --ld value  枚举多级域名的字典文件，当level大于2时候使用，不填则会默认
        --help, -h                      show help (default: false)
-       
-
 
 After:
 
