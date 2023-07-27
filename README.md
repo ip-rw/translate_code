@@ -15,7 +15,7 @@ I made it because the Chinese particularly release a lot of interesting code now
 to me.
 
 Usage
-------
+-----
 I use like this:
 
     find ~/ksubdomain -type f |grep -v 'git\|svg'|  python3 main.py
