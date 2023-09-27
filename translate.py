@@ -11,7 +11,8 @@ from deep_translator import GoogleTranslator
 from thefuzz import fuzz
 from thefuzz.process import extract
 import concurrent.futures
-
+from GlotScript import get_script_predictor
+sp = get_script_predictor()
 
 def char_batch(iterable, n=1):
     char_batch = set()
@@ -135,11 +136,9 @@ def extract_unicode_blocks(text):
     for line in text.splitlines():
         for chunk in re.split("|".join(map(re.escape, fs)), line):
             norm = unicodedata.normalize('NFKC', chunk.strip())
-            if norm.isascii() or is_punctuation(norm):
-                # print(norm)
+            langs = sp(chunk.strip())
+            if norm.isascii() or is_punctuation(norm) or langs[0] == "Zyyy":
                 continue
-            # else:
-            #     print(norm)
             blocks.add(chunk.strip())
     return blocks
 
