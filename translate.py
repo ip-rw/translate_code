@@ -130,15 +130,20 @@ def is_punctuation(s):
     """Check if the entire string consists of punctuation characters."""
     return all(unicodedata.category(c).startswith('P') for c in s)
 
-
+escapes = ['n','r','t','b','f','x']
 def extract_unicode_blocks(text):
     blocks = set()
     for line in text.splitlines():
+        line = line.strip()
         for chunk in re.split("|".join(map(re.escape, fs)), line):
             norm = unicodedata.normalize('NFKC', chunk.strip())
+            chunk = re.sub(r"(^[^\w]+)|([^\w]+$)", "", chunk)
+            if re.match(r"^[nrt][^a-z]", chunk):
+                chunk = chunk[1:]
             langs = sp(chunk.strip())
             if norm.isascii() or is_punctuation(norm) or langs[0] == "Zyyy":
                 continue
+            #    print(chunk.strip())
             blocks.add(chunk.strip())
     return blocks
 

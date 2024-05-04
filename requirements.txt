@@ -1,4 +1,6 @@
+deep-translator
 charset-normalizer==3.2.0
-deep-translator==1.11.4
 requests==2.31.0
 thefuzz==0.20.0
+openai
+GlotScript
