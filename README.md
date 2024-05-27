@@ -4,7 +4,6 @@ Updated to include a GPT version with significantly better performance and accur
 example here https://github.com/ip-rw/yakit_english/ this is a large, mature electron GUI translated from Chinese into 
 English without manual intervention.
 
-========================
 Rough and ready way to translate source code into English. It will extract and translate blocks of non-ASCII
 text and then write it all back to the file. It expects you to pipe/pass as args a list of file paths to translate.
 It uses GoogleTranslate from the deep_translate library and works best via pool of rotating proxies. There's no reason
