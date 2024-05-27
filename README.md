@@ -1,5 +1,9 @@
 Source code translator
 ======================
+Updated to includ a GPT version which basically offers better performance and accuracy. You can see an example of 
+translate_code's output here: https://github.com/ip-rw/yakit_english/ where it translates a large nodejs electron GUI 
+applicaton almost seamlessly.
+
 Rough and ready way to translate source code into English. It will extract and translate blocks of non-ASCII
 text and then write it all back to the file. It expects you to pipe/pass as args a list of file paths to translate.
 It uses GoogleTranslate from the deep_translate library and works best via pool of rotating proxies. There's no reason
